@@ -104,10 +104,10 @@ def test_get_tech_news(mocker):
     # Arrange
     db.news.drop()
     mocker.patch("tech_news.scraper.fetch", new=mocked_fetch)
-    mocked_create_news = mocker.patch("tech_news.scraper.create_news")
 
     for amount in [1, 5, 13, 30]:
         # Act
+        mocked_create_news = mocker.patch("tech_news.scraper.create_news")
         result = get_tech_news(amount)
         mocked_create_news.assert_called_once_with(result)
 
