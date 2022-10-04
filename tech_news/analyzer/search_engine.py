@@ -26,7 +26,11 @@ def search_by_date(date):
 
 # Requisito 8
 def search_by_tag(tag):
-    """Seu código deve vir aqui"""
+    scrapes = search_news(
+        {"tags": {"$elemMatch": {"$regex": tag, "$options": "i"}}}
+    )
+
+    return [(article["title"], article["url"]) for article in scrapes]
 
 
 # Requisito 9
